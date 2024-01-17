@@ -6,7 +6,6 @@ public class Task {
     private String name;
     private String description;
     private Status status;
-    protected static int count = 0;
 
     public Task(String name, String description, Status status) {
         this.name = name;

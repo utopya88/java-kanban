@@ -20,16 +20,16 @@ public class TaskManager {
     }
 
 
-    public HashMap<Integer, Task> getAllTasks() {
-        return tasks;
+    public ArrayList<Task> getAllTasks() {
+        return new ArrayList<>(tasks.values());
     }
 
-    public HashMap<Integer, Epic> getAllEpics() {
-        return epics;
+    public ArrayList<Epic> getAllEpics() {
+        return new ArrayList<>(epics.values());
     }
 
-    public HashMap<Integer, Subtask> getAllSubTasks() {
-        return subTasks;
+    public ArrayList<Subtask> getAllSubTasks() {
+        return new ArrayList<>(subTasks.values());
     }
 
     public Task createTask(Task task) {
@@ -46,34 +46,44 @@ public class TaskManager {
         int epicId = subTask.getEpic();
         subTask.setId(generateId());
         subTasks.put(subTask.getId(), subTask);
-        Epic epic = epics.get(epicId);
-        epic.addSubtaskId(subTask.getId());
-        epic.setStatus(calculateStatus(epic));
+        if (epics.containsKey(epics.get(epicId))) {
+            Epic epic = epics.get(epicId);
+            epic.addSubtaskId(subTask.getId());
+            epic.setStatus(calculateStatus(epic));
+        } else {
+            System.out.println("Такого эпика нет");
+        }
         return subTask;
     }
     public Task getTaskById(int id) {
-        Task task = tasks.get(id);
-        return task;
+        return tasks.get(id);
     }
     public Epic getEpicById(int id) {
-        Epic epic = epics.get(id);
-        return epic;
+        return epics.get(id);
     }
 
     public Subtask getSubTaskById(int id) {
-        Subtask subTask = subTasks.get(id);
-        return subTask;
+        return subTasks.get(id);
     }
     public void updateTask(Task task) {
         if (task.getStatus() == null) {
             task.setStatus(Status.NEW);
         }
-        tasks.put(task.getId(), task);
+        if (tasks.containsKey(task.getId())) {
+            tasks.put(task.getId(), task);
+        } else {
+            System.out.println("Такого ключа нет");
+        }
     }
     public void updateEpic(Epic epic) {
-        Epic saved = epics.get(epic.getId());
-        saved.setName(epic.getName());
-        saved.setDescription(epic.getDescription());
+        if (epics.containsKey(epics.get(epic.getId()))) {
+            Epic saved = epics.get(epic.getId());
+            saved.setName(epic.getName());
+            saved.setDescription(epic.getDescription());
+        } else {
+            System.out.println("Такого ключа нет");
+        }
+
     }
     public void updateSubtask(Subtask subTask) {
         int epicId = subTask.getEpic();
