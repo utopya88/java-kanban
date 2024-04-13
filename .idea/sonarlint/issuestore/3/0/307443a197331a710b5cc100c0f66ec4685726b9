@@ -1,0 +1,15 @@
+
+U
+java:S1118
+":Add a private constructor to hide the implicit public one.(¹ÊãŞúÿÿÿÿ
+E	java:S106"+Replace this use of System.out by a logger.(±¤ıÚıÿÿÿÿ
+E	java:S106"+Replace this use of System.out by a logger.(ÍÖÖûÿÿÿÿ
+E	java:S106"+Replace this use of System.out by a logger.(ªÍîàúÿÿÿÿ
+@	java:S106"+Replace this use of System.out by a logger.(ÃÜ²
+E	java:S106"+Replace this use of System.out by a logger.(ËÛ„­øÿÿÿÿ
+E	java:S106"+Replace this use of System.out by a logger.(¬÷óîûÿÿÿÿ
+E	java:S106 "+Replace this use of System.out by a logger.(Á¥ä‡üÿÿÿÿ
+E	java:S106#"+Replace this use of System.out by a logger.(ÏùŸœûÿÿÿÿ
+E	java:S106%"+Replace this use of System.out by a logger.(ÍÖÖûÿÿÿÿ
+M
+java:S1144"2Remove this unused private "printAllTasks" method.(î²Ûşÿÿÿÿ
