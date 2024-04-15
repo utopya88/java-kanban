@@ -1,5 +1,6 @@
 package test;
-
+import java.util.List;
+import java.util.ArrayList;
 import model.Epic;
 import model.Subtask;
 import model.Task;
@@ -18,7 +19,50 @@ class HistoryManagerTest {
     void beforeEach() {
         historyManager = Managers.getDefaultHistory();
     }
+    @Test
+    void removeFirstElement() {
+        Task task1 = new Task(1, "Task #1", "DT", Status.NEW);
+        Epic epic2 = new Epic(2, "Epic #2", "DT");
+        Subtask subTask3 = new Subtask("SubTask #3", "SubTask #3", Status.NEW,1);
+        historyManager.add(task1);
+        historyManager.add(epic2);
+        historyManager.add(subTask3);
+        historyManager.remove(1);
+        List<Task> list = historyManager.getHistory();
+        Assertions.assertEquals(2, list.size(), "Size should be 2");
+        Assertions.assertEquals(epic2, list.get(0), "Epic 2 should be element with index 0");
+        Assertions.assertEquals(subTask3, list.get(1), "Sub task 3 should be element with index 1");
+    }
 
+    @Test
+    void removeLastElement() {
+        Task task1 = new Task(1, "Task #1", "DT", Status.NEW);
+        Epic epic2 = new Epic(2, "Epic #2", "DT");
+        Subtask subTask3 = new Subtask(3, "SubTask #3", "DT", Status.NEW, 2);
+        historyManager.add(task1);
+        historyManager.add(epic2);
+        historyManager.add(subTask3);
+        historyManager.remove(3);
+        List<Task> list = historyManager.getHistory();
+        Assertions.assertEquals(2, list.size(), "Size should be 2");
+        Assertions.assertEquals(task1, list.get(0), "Task 1 should be first");
+        Assertions.assertEquals(epic2, list.get(1), "Epic 2 should be second");
+    }
+
+    @Test
+    void removeMiddleElement() {
+        Task task1 = new Task(1, "Task #1", "DT", Status.NEW);
+        Epic epic2 = new Epic(2, "Epic #2", "DT");
+        Subtask subTask3 = new Subtask(3, "SubTask #3", "DT", Status.NEW, 2);
+        historyManager.add(task1);
+        historyManager.add(epic2);
+        historyManager.add(subTask3);
+        historyManager.remove(2);
+        List<Task> list = historyManager.getHistory();
+        Assertions.assertEquals(2, list.size(), "Size should be 2");
+        Assertions.assertEquals(task1, list.get(0), "Task 1 should be first");
+        Assertions.assertEquals(subTask3, list.get(1), "SubTask 3 should be third");
+    }
     @Test
     void addTest() {
         Task task = new Task(1, "task1", "task", Status.NEW);
