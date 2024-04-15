@@ -1,0 +1,19 @@
+
+7
+java:S1220""Move this file to a named package.8î®ªÖÞ1
+ž
+java:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ŽÂŠ8ð®ªÖÞ1
+^
+java:S1854
+"<Remove this useless assignment to local variable "subtask2".(Ü°éÿÿÿÿÿ8ñ®ªÖÞ1
+^
+java:S1854	"<Remove this useless assignment to local variable "subtask1".(Ïö»Ôüÿÿÿÿ8ñ®ªÖÞ1
+O
+java:S1481	"-Remove this unused "subtask1" local variable.(Ïö»Ôüÿÿÿÿ8ò®ªÖÞ1
+O
+java:S1481
+"-Remove this unused "subtask2" local variable.(Ü°éÿÿÿÿÿ8ò®ªÖÞ1
+o	java:S100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(£ã¤þÿÿÿÿ8ó®ªÖÞ1
+j	java:S100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ŽÂŠ8ó®ªÖÞ1
+G
+java:S5960"+Remove this assertion from production code.(ñÓØ&8ó®ªÖÞ1

@@ -1,0 +1,14 @@
+
+7
+java:S1220""Move this file to a named package.8ÆØ”Ëß1
+d
+java:S2175D"GA "HashMap<Integer, Epic>" cannot contain a "Epic" in a "Integer" type.(ªóöÜ8ŞØ”Ëß1
+G	java:S106I"+Replace this use of System.out by a logger.(°Ì‚Ä8ßØ”Ëß1
+L	java:S106Q"+Replace this use of System.out by a logger.(…ñ‰øÿÿÿÿ8ßØ”Ëß1
+L	java:S106\"+Replace this use of System.out by a logger.(åÏùëúÿÿÿÿ8ßØ”Ëß1
+G	java:S106g"+Replace this use of System.out by a logger.(Š¤÷ˆ8àØ”Ëß1
+L	java:S106w"+Replace this use of System.out by a logger.(ÊØİáøÿÿÿÿ8áØ”Ëß1
+i
+java:S2175|"GA "HashMap<Integer, Epic>" cannot contain a "Epic" in a "Integer" type.(²‘×¨şÿÿÿÿ8àØ”Ëß1
+M	java:S106"+Replace this use of System.out by a logger.(ÊØİáøÿÿÿÿ8âØ”Ëß1
+M	java:S106£"+Replace this use of System.out by a logger.(Ş­ì°şÿÿÿÿ8”—Ëß1

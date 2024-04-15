@@ -1,0 +1,16 @@
+
+7
+java:S1220""Move this file to a named package.8ô¯ÓŞ1
+\
+java:S1118":Add a private constructor to hide the implicit public one.(¹ÊãŞúÿÿÿÿ8ÒîµÓŞ1
+L	java:S106	"+Replace this use of System.out by a logger.(±¤ıÚıÿÿÿÿ8Êğ¸ÓŞ1
+L	java:S106"+Replace this use of System.out by a logger.(ÍÖÖûÿÿÿÿ8Êğ¸ÓŞ1
+L	java:S106"+Replace this use of System.out by a logger.(ªÍîàúÿÿÿÿ8Ëğ¸ÓŞ1
+G	java:S106"+Replace this use of System.out by a logger.(ÃÜ²8Ëğ¸ÓŞ1
+L	java:S106"+Replace this use of System.out by a logger.(ËÛ„­øÿÿÿÿ8Ëğ¸ÓŞ1
+L	java:S106"+Replace this use of System.out by a logger.(¬÷óîûÿÿÿÿ8Ëğ¸ÓŞ1
+L	java:S106"+Replace this use of System.out by a logger.(Á¥ä‡üÿÿÿÿ8Ëğ¸ÓŞ1
+L	java:S106"+Replace this use of System.out by a logger.(ÏùŸœûÿÿÿÿ8Ëğ¸ÓŞ1
+L	java:S106"+Replace this use of System.out by a logger.(ÍÖÖûÿÿÿÿ8Ìğ¸ÓŞ1
+T
+java:S1144"2Remove this unused private "printAllTasks" method.(î²Ûşÿÿÿÿ8Ìğ¸ÓŞ1
