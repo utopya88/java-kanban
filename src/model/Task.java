@@ -80,13 +80,6 @@ public class Task {
 
     @Override
     public String toString() {
-        return "model.Task{" +
-                "name=" + name + " " +
-        ", description=" + description + " " +
-        ", status=" + status +
-                ", id=" + id +
-                '}';
+        return getId() + "," + Type.TASK + "," + getName() + "," + getStatus() + "," + getDescription();
     }
-
-
 }
