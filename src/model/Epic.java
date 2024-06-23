@@ -23,6 +23,7 @@ public class Epic extends Task {
     public List<Integer> getSubTasksId() {
         return subTasks;
     }
+    public Type getType() {return Type.SUBTASK;}
 
     public void clearSubtask() {
         subTasks.clear();

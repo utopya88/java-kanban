@@ -8,6 +8,8 @@ public class Task {
     private String description;
     private Status status;
 
+    private Type type;
+
     public Task(String name, String description, Status status) {
         this.name = name;
         this.description = description;
@@ -45,6 +47,7 @@ public class Task {
         return name;
     }
 
+
     public void setName(String name) {
         this.name = name;
     }
@@ -52,6 +55,8 @@ public class Task {
     public Status getStatus() {
         return status;
     }
+
+    public Type getType() {return Type.TASK;}
     public void setStatus(Status status) {
         this.status = status;
     }

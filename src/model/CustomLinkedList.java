@@ -51,4 +51,8 @@ public class CustomLinkedList {
         }
         node.setTask(null);
     }
+
+    public Map<Integer, Node> getHistory() {
+        return history;
+    }
 }

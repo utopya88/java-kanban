@@ -17,7 +17,7 @@ public class Subtask extends Task {
     public int getEpic() {
         return epic;
     }
-
+    public Type getType() {return Type.SUBTASK;}
     public void setEpic(int epic) {
         this.epic = epic;
     }

@@ -1,6 +1,7 @@
 package service;
 
 import model.*;
+import service.HistoryManager;
 
 import exceptions.ManagerSaveException;
 
@@ -9,12 +10,13 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
+import static model.Type.*;
+
 
 public class FileBackedTasksManager extends InMemoryTaskManager implements TaskManager {
     protected Path path;
 
     static final String HEADER = "id,type,name,status,description,epic\n";
-
 
     public void save() {
         try (FileWriter fileRecord = new FileWriter(path.toString())) {
@@ -35,6 +37,64 @@ public class FileBackedTasksManager extends InMemoryTaskManager implements TaskM
         } catch (IOException e) {
             throw new ManagerSaveException("Произошла ошибка записи в файл", e);
         }
+    }
+
+    public void load() {
+        int maxId = 0;
+        try (BufferedReader reader = new BufferedReader(new FileReader(path.toString()))) {
+            reader.readLine();
+            while (true) {
+                String line = reader.readLine();
+                if (line == null) {
+                    break;
+                }
+                if (line.isEmpty()) {
+                    break;
+                }
+                Task task = fromString(line);
+                int id = task.getId();
+                switch (task.getType()) {
+                    case TASK:
+                        tasks.put(id, task);
+                        break;
+
+                    case EPIC:
+                        Epic epic = (Epic) task;
+                        epics.put(id, epic);
+                        break;
+
+                    case SUBTASK:
+                        subTasks.put(id, (Subtask) task);
+                        Epic e = epics.get(subTasks.get(id).getEpic());
+                        e.addSubtaskId(id);
+                        break;
+                }
+                if (maxId < id) {
+                    maxId = id;
+                }
+            }
+
+            String line = reader.readLine();
+            if (line != null && !line.isEmpty()) {
+                List<Integer> list = historyFromString(line);
+                for (Integer id : list) {
+                    if (tasks.containsKey(id)) {
+                        historyManager.add(tasks.get(id));
+                    }
+                    if (epics.containsKey(id)) {
+                        historyManager.add(epics.get(id));
+                    }
+                    if (subTasks.containsKey(id)) {
+                        historyManager.add(subTasks.get(id));
+                    }
+                }
+            }
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException("Ошибка! Файл не найден!", e);
+        } catch (IOException e) {
+            throw new ManagerSaveException("Произошла ошибка чтения из файла, возможно файл поврежден", e);
+        }
+        seq = maxId;
     }
     private static List<Integer> historyFromString(String value) {
         String[] split = value.split(",");
