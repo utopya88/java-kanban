@@ -374,6 +374,7 @@ public class InMemoryTaskManager implements TaskManager {
     public List<Task> getHistory() {
         return historyManager.getHistory();
     }
+
     Comparator<Task> taskComparator = (o1, o2) -> {
         if (o1.getId() == o2.getId()) {
             return 0;
