@@ -13,6 +13,7 @@ import model.Status;
 import java.util.HashMap;
 import java.util.ArrayList;
 import java.util.List;
+
 public class InMemoryTaskManager implements TaskManager {
 
     protected HashMap<Integer, Task> tasks;
@@ -159,6 +160,7 @@ public class InMemoryTaskManager implements TaskManager {
 
         prioritizedTasks.add(task);
     }
+
     @Override
     public void updateEpic(Epic epic) {
         if (epic == null) {
@@ -240,15 +242,18 @@ public class InMemoryTaskManager implements TaskManager {
         savedEpic.clearSubtaskForId(id);
         savedEpic.setStatus(calculateStatus(savedEpic));
     }
+
     @Override
     public void deleteAllTasks() {
         tasks.clear();
     }
+
     @Override
     public void deleteAllEpics() {
         epics.clear();
         subTasks.clear();
     }
+
     @Override
     public void deleteAllSubTasks() {
         subTasks.clear();
@@ -257,6 +262,7 @@ public class InMemoryTaskManager implements TaskManager {
             epic.setStatus(calculateStatus(epic));
         }
     }
+
     @Override
     public List<Subtask> getSubTaskList(Epic epic) {
 
@@ -266,6 +272,7 @@ public class InMemoryTaskManager implements TaskManager {
         }
         return list;
     }
+
     @Override
     public List<Task> getPrioritizedTasks() {
         return new ArrayList<>(prioritizedTasks);
