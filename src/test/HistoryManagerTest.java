@@ -14,6 +14,7 @@ import org.junit.jupiter.api.BeforeEach;
 
 class HistoryManagerTest {
     HistoryManager historyManager;
+
     @BeforeEach
     void beforeEach() {
         historyManager = Managers.getDefaultHistory();
