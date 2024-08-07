@@ -1,6 +1,5 @@
 package test;
 import java.util.List;
-import java.util.ArrayList;
 import model.Epic;
 import model.Subtask;
 import model.Task;
@@ -19,6 +18,7 @@ class HistoryManagerTest {
     void beforeEach() {
         historyManager = Managers.getDefaultHistory();
     }
+
     @Test
     void removeFirstElement() {
         Task task1 = new Task(1, "Task #1", "DT", Status.NEW);
@@ -63,10 +63,11 @@ class HistoryManagerTest {
         Assertions.assertEquals(task1, list.get(0), "Task 1 should be first");
         Assertions.assertEquals(subTask3, list.get(1), "SubTask 3 should be third");
     }
+
     @Test
     void addTest() {
         Task task = new Task(1, "task1", "task", Status.NEW);
-        Epic epic = new Epic(1, "EPIC1" , "afs");
+        Epic epic = new Epic(1, "EPIC1", "afs");
         Subtask subtask = new Subtask("fas", "afs", Status.IN_PROGRESS, 1);
         historyManager.add(task);
         historyManager.add(epic);
@@ -79,7 +80,7 @@ class HistoryManagerTest {
     @Test
     void getHistoryTest() {
         historyManager.add(new Subtask("fas", "afs", Status.IN_PROGRESS, 1));
-        historyManager.add(new Epic(1, "EPIC1" , "afs"));
+        historyManager.add(new Epic(1, "EPIC1", "afs"));
         historyManager.add(new Subtask("fas", "afs", Status.IN_PROGRESS, 1));
         Assertions.assertEquals(3, historyManager.getHistory().size(), "Размер не совпадает");
     }
@@ -88,6 +89,7 @@ class HistoryManagerTest {
     void historyIsEmpty() {
         Assertions.assertEquals(0, historyManager.getHistory().size(), "список должен быть пустым");
     }
+
     @Test
     void updateHistotyTask() {
         Task task = new Task(1,"task1", "task1");
