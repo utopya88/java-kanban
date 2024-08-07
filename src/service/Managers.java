@@ -1,19 +1,20 @@
 package service;
 
 import model.Task;
-import model.Subtask;
 import service.HistoryManager;
 import service.InMemoryHistoryManager;
 import service.InMemoryTaskManager;
 import service.TaskManager;
 
 public class Managers {
-    public static HistoryManager getDefaultHistory () {
+    public static HistoryManager getDefaultHistory() {
         return new InMemoryHistoryManager();
     }
+
     public static TaskManager getDefault() {
         return new InMemoryTaskManager();
     }
+
     private static void printAllTasks(TaskManager manager) {
         System.out.println("Задачи:");
         for (Task task : manager.getAllTasks()) {

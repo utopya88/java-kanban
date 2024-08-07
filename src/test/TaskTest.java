@@ -13,6 +13,8 @@ import service.InMemoryHistoryManager;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+
+
 class TaskTest {
     TaskManager taskManager;
     TaskManager inMemoryTaskManager = Managers.getDefault();
@@ -51,7 +53,7 @@ class TaskTest {
     void inMemoryTaskIdSearchTaskById() {
         Task task = new Task("task1", "task1");
         inMemoryTaskManager.createTask(task);
-        Assertions.assertEquals(task, inMemoryTaskManager.getTaskById(1), "Таска не находится по айди" );
+        Assertions.assertEquals(task, inMemoryTaskManager.getTaskById(1), "Таска не находится по айди");
 
     }
 
@@ -59,17 +61,18 @@ class TaskTest {
     void inMemoryTaskIdSearchEpicById() {
         Epic epic = new Epic("epic1", "epic1");
         inMemoryTaskManager.createEpic(epic);
-        Assertions.assertEquals(epic, inMemoryTaskManager.getEpicById(1), "Эпик не находится по айди" );
+        Assertions.assertEquals(epic, inMemoryTaskManager.getEpicById(1), "Эпик не находится по айди");
 
     }
 
     @Test
     void inMemoryTaskIdSearchSubtaskById() {
-        Subtask subtask = new Subtask("Subtask1" , "subtask1", Status.NEW, 1);
+        Subtask subtask = new Subtask("Subtask1", "subtask1", Status.NEW, 1);
         inMemoryTaskManager.createSubTask(subtask);
-        Assertions.assertEquals(subtask, inMemoryTaskManager.getSubTaskById(1), "Сабтаск не находится по айди" );
+        Assertions.assertEquals(subtask, inMemoryTaskManager.getSubTaskById(1), "Сабтаск не находится по айди");
 
     }
+
     @Test
     void immutabilityFieldsTask() {
         Task task = new Task("task", "taskD");
@@ -102,7 +105,7 @@ class TaskTest {
                 "совпадают");
         Assertions.assertEquals("SubtaskD", inMemoryTaskManager.getSubTaskById(1).getDescription(), "Описания " +
                 "не совпадают");
-        Assertions.assertEquals(1,inMemoryTaskManager.getSubTaskById(1).getId(), "айди не совпадает" );
+        Assertions.assertEquals(1,inMemoryTaskManager.getSubTaskById(1).getId(), "айди не совпадает");
         Assertions.assertEquals(Status.NEW, inMemoryTaskManager.getSubTaskById(1).getStatus(), "статус не" +
                 "совпадают");
     }

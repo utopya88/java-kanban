@@ -1,13 +1,24 @@
 package model;
 
 import java.util.Objects;
+import java.time.Duration;
+import java.time.LocalDateTime;
 
 public class Task {
     private int id = 0;
     private String name;
     private String description;
     private Status status;
+    private Duration duration;
+    private LocalDateTime startTime;
 
+    public Task(String name, String description, Status status, LocalDateTime startTime, Duration duration) {
+        this.name = name;
+        this.description = description;
+        this.status = status;
+        this.startTime = startTime;
+        this.duration = duration;
+    }
     public Task(String name, String description, Status status) {
         this.name = name;
         this.description = description;
@@ -26,12 +37,30 @@ public class Task {
         this.description = description;
     }
 
-    public Task(int id, String name, String description, Status status) {
+    public Task(int id, String name, String description, Status status, LocalDateTime startTime, Duration duration) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.status = status;
+        this.startTime = startTime;
+        this.duration = duration;
     }
+
+    public LocalDateTime getEndTime() {
+        if (startTime == null) {
+            return null;
+        }
+        if (duration == null) {
+            return startTime;
+        }
+        return startTime.plus(duration);
+    }
+
+    public void setStartTime(LocalDateTime startTime) {
+        this.startTime = startTime;
+    }
+
+    public Duration getDuration() {return duration;}
 
     public int getId() {
         return id;
@@ -56,12 +85,18 @@ public class Task {
         this.status = status;
     }
 
+    public LocalDateTime getStartTime() {return startTime;}
+
     public String getDescription() {
         return description;
     }
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public void setDuration(Duration duration) {
+        this.duration = duration;
     }
 
     @Override
