@@ -1,7 +1,7 @@
 package test;
 
 import model.Epic;
-import model.Subtask;
+import model.SubTask;
 import model.Status;
 import service.TaskManager;
 import service.Managers;
@@ -14,8 +14,8 @@ class EpicTest {
     @Test
     public void epicHasNewStatusWhenAllSubtaskAreNew() {
         Epic epic = taskManager.createEpic(new Epic(1,"epic 1", "DE"));
-        Subtask subtask1 = taskManager.createSubTask(new Subtask("sub1", "Sub", Status.NEW, 1));
-        Subtask subtask2 = taskManager.createSubTask(new Subtask("sub2", "Sub", Status.NEW, 1));
+        SubTask subtask1 = taskManager.createSubTask(new SubTask("sub1", "Sub", Status.NEW, 1));
+        SubTask subtask2 = taskManager.createSubTask(new SubTask("sub2", "Sub", Status.NEW, 1));
         Assertions.assertEquals(Status.NEW, epic.getStatus());
     }
 }

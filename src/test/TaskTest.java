@@ -3,7 +3,7 @@ package test;
 import static org.junit.jupiter.api.Assertions.*;
 
 import model.Epic;
-import model.Subtask;
+import model.SubTask;
 import model.Task;
 import model.Status;
 import service.TaskManager;
@@ -44,8 +44,8 @@ class TaskTest {
 
     @Test
     void equalitySubtaskById() {
-        Subtask subtask1 = new Subtask(1, "Subtask1", "dd", Status.NEW,1);
-        Subtask subtask2 = new Subtask(1,"Subtask2", "dd", Status.NEW,1);
+        SubTask subtask1 = new SubTask(1, "Subtask1", "dd", Status.NEW, 1);
+        SubTask subtask2 = new SubTask(1,"Subtask2", "dd", Status.NEW, 1);
         assertEquals(subtask1,subtask2, "Эпики с одинаковыми айди должны быть равны");
     }
 
@@ -67,7 +67,7 @@ class TaskTest {
 
     @Test
     void inMemoryTaskIdSearchSubtaskById() {
-        Subtask subtask = new Subtask("Subtask1", "subtask1", Status.NEW, 1);
+        SubTask subtask = new SubTask("Subtask1", "subtask1", Status.NEW, 1);
         inMemoryTaskManager.createSubTask(subtask);
         Assertions.assertEquals(subtask, inMemoryTaskManager.getSubTaskById(1), "Сабтаск не находится по айди");
 
@@ -99,7 +99,7 @@ class TaskTest {
 
     @Test
     void immutabilityFieldsSubtask() {
-        Subtask subtask = new Subtask("subtask", "SubtaskD", Status.NEW,1);
+        SubTask subtask = new SubTask("subtask", "SubtaskD", Status.NEW,1);
         inMemoryTaskManager.createSubTask(subtask);
         Assertions.assertEquals("subtask", inMemoryTaskManager.getSubTaskById(1).getName(), "имена не" +
                 "совпадают");
