@@ -1,7 +1,7 @@
 package test;
 import java.util.List;
 import model.Epic;
-import model.Subtask;
+import model.SubTask;
 import model.Task;
 import service.HistoryManager;
 import service.Managers;
@@ -24,7 +24,7 @@ class HistoryManagerTest {
     void removeFirstElement() {
         Task task1 = new Task(1, "Task #1", "DT", Status.NEW);
         Epic epic2 = new Epic(2, "Epic #2", "DT");
-        Subtask subTask3 = new Subtask(3, "SubTask #3", Status.NEW,1);
+        SubTask subTask3 = new SubTask("sf", "SubTask #3", Status.NEW,1);
         historyManager.add(task1);
         historyManager.add(epic2);
         historyManager.add(subTask3);
@@ -39,7 +39,7 @@ class HistoryManagerTest {
     void removeLastElement() {
         Task task1 = new Task(1, "Task #1", "DT", Status.NEW);
         Epic epic2 = new Epic(2, "Epic #2", "DT");
-        Subtask subTask3 = new Subtask(3, "SubTask #3", "DT", Status.NEW, 2);
+        SubTask subTask3 = new SubTask(3, "SubTask #3", "DT", Status.NEW, 2);
         historyManager.add(task1);
         historyManager.add(epic2);
         historyManager.add(subTask3);
@@ -54,7 +54,7 @@ class HistoryManagerTest {
     void removeMiddleElement() {
         Task task1 = new Task(1, "Task #1", "DT", Status.NEW);
         Epic epic2 = new Epic(2, "Epic #2", "DT");
-        Subtask subTask3 = new Subtask(3, "SubTask #3", "DT", Status.NEW, 2);
+        SubTask subTask3 = new SubTask(3, "SubTask #3", "DT", Status.NEW, 2);
         historyManager.add(task1);
         historyManager.add(epic2);
         historyManager.add(subTask3);
@@ -69,7 +69,7 @@ class HistoryManagerTest {
     void addTest() {
         Task task = new Task(1, "task1", "task", Status.NEW);
         Epic epic = new Epic(1, "EPIC1", "afs");
-        Subtask subtask = new Subtask("fas", "afs", Status.IN_PROGRESS, 1);
+        SubTask subtask = new SubTask("fas", "afs", Status.IN_PROGRESS, 1);
         historyManager.add(task);
         historyManager.add(epic);
         historyManager.add(subtask);
@@ -80,9 +80,9 @@ class HistoryManagerTest {
 
     @Test
     void getHistoryTest() {
-        historyManager.add(new Subtask("fas", "afs", Status.IN_PROGRESS, 1));
+        historyManager.add(new SubTask("fas", "afs", Status.IN_PROGRESS, 1));
         historyManager.add(new Epic(1, "EPIC1", "afs"));
-        historyManager.add(new Subtask("fas", "afs", Status.IN_PROGRESS, 1));
+        historyManager.add(new SubTask("fas", "afs", Status.IN_PROGRESS, 1));
         Assertions.assertEquals(3, historyManager.getHistory().size(), "Размер не совпадает");
     }
 

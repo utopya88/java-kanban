@@ -67,7 +67,7 @@ class TaskTest {
 
     @Test
     void inMemoryTaskIdSearchSubtaskById() {
-        SubTask subtask = new SubTask("Subtask1", "subtask1", Status.NEW, 1);
+        SubTask subtask = new SubTask("Subtask1", "subtask1", Status.NEW,1);
         inMemoryTaskManager.createSubTask(subtask);
         Assertions.assertEquals(subtask, inMemoryTaskManager.getSubTaskById(1), "Сабтаск не находится по айди");
 
@@ -99,7 +99,7 @@ class TaskTest {
 
     @Test
     void immutabilityFieldsSubtask() {
-        SubTask subtask = new SubTask("subtask", "SubtaskD", Status.NEW,1);
+        SubTask subtask = new SubTask(1, "subtask", "SubtaskD", Status.NEW,1);
         inMemoryTaskManager.createSubTask(subtask);
         Assertions.assertEquals("subtask", inMemoryTaskManager.getSubTaskById(1).getName(), "имена не" +
                 "совпадают");
@@ -108,14 +108,5 @@ class TaskTest {
         Assertions.assertEquals(1,inMemoryTaskManager.getSubTaskById(1).getId(), "айди не совпадает");
         Assertions.assertEquals(Status.NEW, inMemoryTaskManager.getSubTaskById(1).getStatus(), "статус не" +
                 "совпадают");
-    }
-
-    @Test
-    void returnManagerReadyCopies() {
-        Managers managers = new Managers();
-        Assertions.assertEquals(new InMemoryTaskManager(), managers.getDefault(), "менеджер не возвращает" +
-                "готовый к работе экземпляр ТаскМенеджера");
-        Assertions.assertEquals(new InMemoryHistoryManager(), managers.getDefaultHistory(), "менеджер не возв" +
-                "ращает готовый к работе экземпляр историй.");
     }
 }

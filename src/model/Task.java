@@ -48,6 +48,13 @@ public class Task {
         this.description = description;
     }
 
+    public Task(int id, String name, String description, Status status) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.status = status;
+    }
+
     public LocalDateTime getEndTime() {
         if (startTime == null) {
             return null;
