@@ -1,15 +1,15 @@
 package model;
 
-import java.util.ArrayList;
-import java.util.Objects;
-import java.util.List;
-import java.time.Duration;
 import java.time.LocalDateTime;
-
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 public class Epic extends Task {
-    private LocalDateTime endTime;
+
     private final List<Integer> subTasks = new ArrayList<>();
+
+    private LocalDateTime endTime;
 
     public Epic(String name, String description) {
         super(name, description);
@@ -19,25 +19,33 @@ public class Epic extends Task {
         super(id, name, description);
     }
 
-    public LocalDateTime getEndTime() {return endTime;}
-    public void setEndTime(LocalDateTime endTime) {this.endTime = endTime;}
-    public void addSubtaskId(int subTaskId) {
-        subTasks.add(subTaskId);
+    @Override
+    public LocalDateTime getEndTime() {
+        return endTime;
     }
 
-    public List<Integer> getSubTasksId() {
+    public void setEndTime(LocalDateTime endTime) {
+        this.endTime = endTime;
+    }
+
+    public List<Integer> getSubTasks() {
         return subTasks;
     }
 
-    public void clearSubtask() {
+    public void addSubTask(Integer subTaskId) {
+        subTasks.add(subTaskId);
+    }
+
+    public void deleteSubTask(Integer subTaskId) {
+        subTasks.remove(subTaskId);
+    }
+
+    public void removeSubTasksList() {
         subTasks.clear();
     }
 
-    public void clearSubtaskForId(int subTaskId) {
-        subTasks.remove(subTaskId);
-    }
-    public void addSubtask(Integer subTaskId) {
-        subTasks.add(subTaskId);
+    public TaskType getType() {
+        return TaskType.EPIC;
     }
 
     @Override
@@ -53,5 +61,19 @@ public class Epic extends Task {
         return (getId() == epic.getId()) &&
                 Objects.equals(getName(), epic.getName()) &&
                 Objects.equals(getDescription(), epic.getDescription());
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 17;
+        hash = hash + getId();
+        if (getName() != null) {
+            hash = hash + getName().hashCode();
+        }
+        hash = hash*31;
+        if (getDescription() != null) {
+            hash = hash + getDescription().hashCode();
+        }
+        return hash;
     }
 }

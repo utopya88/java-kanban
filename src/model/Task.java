@@ -1,11 +1,12 @@
 package model;
 
-import java.util.Objects;
 import java.time.Duration;
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 public class Task {
-    private int id = 0;
+
+    private int id;
     private String name;
     private String description;
     private Status status;
@@ -19,11 +20,6 @@ public class Task {
         this.startTime = startTime;
         this.duration = duration;
     }
-    public Task(String name, String description, Status status) {
-        this.name = name;
-        this.description = description;
-        this.status = status;
-    }
 
     public Task(String name, String description) {
         this.name = name;
@@ -31,10 +27,10 @@ public class Task {
         this.status = Status.NEW;
     }
 
-    public Task(int id, String name, String description) {
-        this.id = id;
+    public Task(String name, String description, Status status) {
         this.name = name;
         this.description = description;
+        this.status = status;
     }
 
     public Task(int id, String name, String description, Status status, LocalDateTime startTime, Duration duration) {
@@ -46,6 +42,12 @@ public class Task {
         this.duration = duration;
     }
 
+    public Task(int id, String name, String description) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+    }
+
     public LocalDateTime getEndTime() {
         if (startTime == null) {
             return null;
@@ -55,12 +57,6 @@ public class Task {
         }
         return startTime.plus(duration);
     }
-
-    public void setStartTime(LocalDateTime startTime) {
-        this.startTime = startTime;
-    }
-
-    public Duration getDuration() {return duration;}
 
     public int getId() {
         return id;
@@ -78,14 +74,14 @@ public class Task {
         this.name = name;
     }
 
+
     public Status getStatus() {
         return status;
     }
+
     public void setStatus(Status status) {
         this.status = status;
     }
-
-    public LocalDateTime getStartTime() {return startTime;}
 
     public String getDescription() {
         return description;
@@ -95,33 +91,48 @@ public class Task {
         this.description = description;
     }
 
+    public TaskType getType() {
+        return TaskType.TASK;
+    }
+
+    public Duration getDuration() {
+        return duration;
+    }
+
     public void setDuration(Duration duration) {
         this.duration = duration;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Task task = (Task) o;
-        return id == task.id && Objects.equals(name, task.name) && Objects.equals(description, task.description)
-                && status.equals(task.status);
+    public LocalDateTime getStartTime() {
+        return startTime;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(name, description, id, status);
+    public void setStartTime(LocalDateTime startTime) {
+        this.startTime = startTime;
     }
 
     @Override
     public String toString() {
         return "model.Task{" +
                 "name=" + name + " " +
-        ", description=" + description + " " +
-        ", status=" + status +
+                ", description=" + description + " " +
+                ", status=" + status +
                 ", id=" + id +
                 '}';
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        Task task = (Task) obj;
+        return (getId() == task.getId()) &&
+                Objects.equals(getName(), task.getName()) &&
+                Objects.equals(getDescription(), task.getDescription());
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, description, id, status);
+    }
 }
