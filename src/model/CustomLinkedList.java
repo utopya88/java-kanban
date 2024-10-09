@@ -24,10 +24,10 @@ public class CustomLinkedList {
         history.put(id, newNode);
     }
 
-    public List<Task> getTasks(){
+    public List<Task> getTasks() {
         List<Task> list = new ArrayList<>();
         Node current = head;
-        while(current != null) {
+        while (current != null) {
             list.add(current.getTask());
             current = current.getNext();
         }
