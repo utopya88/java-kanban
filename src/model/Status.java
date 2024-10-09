@@ -2,7 +2,7 @@ package model;
 
 public enum Status {
     NEW("Новый"),
-    IN_PROGRESS("В процессе") ,
+    IN_PROGRESS("В процессе"),
     DONE("Завершен");
 
     String nameStatus;
