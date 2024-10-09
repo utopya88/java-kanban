@@ -8,8 +8,6 @@ import model.Task;
 import model.Status;
 import service.TaskManager;
 import service.Managers;
-import service.InMemoryTaskManager;
-import service.InMemoryHistoryManager;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
