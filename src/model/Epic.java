@@ -70,7 +70,7 @@ public class Epic extends Task {
         if (getName() != null) {
             hash = hash + getName().hashCode();
         }
-        hash = hash*31;
+        hash = hash * 31;
         if (getDescription() != null) {
             hash = hash + getDescription().hashCode();
         }
