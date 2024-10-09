@@ -295,6 +295,34 @@ class HttpTaskServerTest {
     }
 
     @Test
+    void shouldReceiveAllSubTask() throws IOException, InterruptedException {
+        HttpClient client = HttpClient.newHttpClient();
+        URI url = URI.create("http://localhost:8080/tasks/subtask/");
+        HttpRequest request = HttpRequest.newBuilder().uri(url).GET().build();
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+
+        assertEquals(200, response.statusCode(),"Should return code 200");
+        List<SubTask> list = gson.fromJson(response.body(), new TypeToken<ArrayList<SubTask>>(){}.getType());
+
+        assertEquals(list.get(0), taskManager.getAllSubTasks().get(0), "SubTask in response should be equals to subtask from method");
+        assertEquals(list.size(), taskManager.getAllSubTasks().size(), "Sizes of the lists should be equal");
+    }
+
+    @Test
+    void shouldReceiveAllEpics() throws IOException, InterruptedException {
+        HttpClient client = HttpClient.newHttpClient();
+        URI url = URI.create("http://localhost:8080/tasks/epic/");
+        HttpRequest request = HttpRequest.newBuilder().uri(url).GET().build();
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+
+        assertEquals(200, response.statusCode(),"Should return code 200");
+        List<Epic> list = gson.fromJson(response.body(), new TypeToken<ArrayList<Epic>>(){}.getType());
+
+        assertEquals(list.get(0), taskManager.getAllEpics().get(0), "SubTask in response should be equals to subtask from method");
+        assertEquals(list.size(), taskManager.getAllEpics().size(), "Sizes of the lists should be equal");
+    }
+
+    @Test
     void shouldReceiveAllTask() throws IOException, InterruptedException {
         HttpClient client = HttpClient.newHttpClient();
         URI url = URI.create("http://localhost:8080/tasks/task/");
