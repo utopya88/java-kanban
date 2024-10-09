@@ -99,6 +99,7 @@ public class InMemoryTaskManager implements TaskManager {
         prioritizedTasks.add(subTask);
         return subTask;
     }
+
     @Override
     public Task getTaskById(int id) {
         Task task = tasks.get(id);
