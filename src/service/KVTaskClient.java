@@ -26,9 +26,8 @@ public class KVTaskClient {
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
             return response.body();
         } catch (IOException | InterruptedException e) {
-            System.out.println("Ошибка во время исполнения запроса, возможно данные на сервере отсутствуют");
+            throw new ManagerSaveException("Ошибка во время исполнения запроса, возможно данные на сервере отсутствуют", (IOException) e);
         }
-        return null;
     }
 
     public void put(String key, String json) {
@@ -44,9 +43,8 @@ public class KVTaskClient {
             System.out.println(response.body());
 
         } catch (IOException | InterruptedException e) {
-            System.out.println("Ошибка во время исполнения запроса, возможно данные на сервере отсутствуют");
+            throw new ManagerSaveException("Ошибка во время исполнения запроса, возможно данные на сервере отсутствуют", (IOException) e);
         }
-
     }
 
     public String load(String key) {
