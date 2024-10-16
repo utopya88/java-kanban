@@ -1,6 +1,7 @@
 package model;
 
 public class Node {
+
     private Task task;
     private Node next;
     private Node prev;
@@ -41,5 +42,4 @@ public class Node {
                 "task=" + task +
                 '}';
     }
-
 }

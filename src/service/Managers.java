@@ -1,41 +1,31 @@
 package service;
 
-import model.Task;
-import service.HistoryManager;
-import service.InMemoryHistoryManager;
-import service.InMemoryTaskManager;
-import service.TaskManager;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import server.DurationAdapter;
+import server.LocalDateTimeAdapter;
+
+import java.time.Duration;
+import java.time.LocalDateTime;
 
 public class Managers {
+
+    public static TaskManager getDefaultInMemoryManager() {
+        return new InMemoryTaskManager(getDefaultHistory());
+    }
+
+    public static TaskManager getDefault() {
+        return new HttpTaskManager("http://localhost:8078");
+    }
+
     public static HistoryManager getDefaultHistory() {
         return new InMemoryHistoryManager();
     }
 
-    public static TaskManager getDefault() {
-        return new InMemoryTaskManager();
-    }
-
-    private static void printAllTasks(TaskManager manager) {
-        System.out.println("Задачи:");
-        for (Task task : manager.getAllTasks()) {
-            System.out.println(task);
-        }
-        System.out.println("Эпики:");
-        for (Task epic : manager.getAllEpics()) {
-            System.out.println(epic);
-
-            for (Task task : manager.getSubTaskById(epic.getId())) {
-                System.out.println("--> " + task);
-            }
-        }
-        System.out.println("Подзадачи:");
-        for (Task subtask : manager.getAllSubTasks()) {
-            System.out.println(subtask);
-        }
-
-        System.out.println("История:");
-        for (Task task : manager.getHistory()) {
-            System.out.println(task);
-        }
+    public static Gson getGson() {
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        gsonBuilder.registerTypeAdapter(LocalDateTime.class, new LocalDateTimeAdapter());
+        gsonBuilder.registerTypeAdapter(Duration.class, new DurationAdapter());
+        return gsonBuilder.create();
     }
 }
