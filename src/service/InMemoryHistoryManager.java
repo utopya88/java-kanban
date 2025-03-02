@@ -1,24 +1,30 @@
 package service;
 
-import java.util.List;
-import model.Node;
 import model.CustomLinkedList;
+import model.Node;
 import model.Task;
 
+import java.util.List;
+
 public class InMemoryHistoryManager implements HistoryManager {
-    protected CustomLinkedList historyList = new CustomLinkedList();
+
+    private final CustomLinkedList historyList = new CustomLinkedList();
 
     @Override
     public void add(Task task) {
         int id = task.getId();
         if (historyList.getHistory().containsKey(id)) {
             Node node = historyList.getHistory().get(id);
-            historyList.linkList(task);
+            historyList.linkLast(task);
             historyList.removeNode(node);
         } else {
-            historyList.linkList(task);
+            historyList.linkLast(task);
         }
+    }
 
+    @Override
+    public List<Task> getHistory() {
+        return historyList.getTasks();
     }
 
     @Override
@@ -28,10 +34,5 @@ public class InMemoryHistoryManager implements HistoryManager {
         }
         Node node = historyList.getHistory().remove(id);
         historyList.removeNode(node);
-    }
-
-    @Override
-    public List<Task> getHistory() {
-        return historyList.getTasks();
     }
 }
